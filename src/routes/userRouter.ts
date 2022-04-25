@@ -5,13 +5,13 @@ import { userSchema } from "../schemas/userSchema.js";
 
 const userRouter = Router();
 
-userRouter.post("/signup", 
-  validateSchemaMiddleware(userSchema), 
-  userController.SignUp
-);
-userRouter.post("/signin",
+userRouter.post("/",
   validateSchemaMiddleware(userSchema),
   userController.SignIn
 )
+userRouter.post("/register", 
+  validateSchemaMiddleware(userSchema), 
+  userController.SignUp
+);
 
 export default userRouter;

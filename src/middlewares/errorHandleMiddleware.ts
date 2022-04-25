@@ -19,6 +19,6 @@ export async function errorHandleMiddleware(
     if(error.type === "unauthorized"){
         return res.sendStatus(401);
     }
-    
+
     return res.sendStatus(500);
 }
