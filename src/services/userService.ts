@@ -13,6 +13,14 @@ export async function Register(userData: CreateUserData){
   await userRepository.insert({...userData, password: hashedPassword});
 }
 
+async function findById(id: number) {
+  const user = await userRepository.findById(id);
+  if (!user) throw { type: "not_found" };
+  
+  delete user.password;
+  return user;
+}
+
 export async function Login(userData: CreateUserData){
   const user = await userRepository.findByEmail(userData.email);
   if (!user) 
@@ -28,5 +36,6 @@ export async function Login(userData: CreateUserData){
 
 export default {
     Register,
+    findById,
     Login
 }
