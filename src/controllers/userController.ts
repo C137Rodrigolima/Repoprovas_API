@@ -3,6 +3,7 @@ import userService, { CreateUserData } from "../services/userService.js";
 
 export async function SignUp(req: Request, res: Response) {
   const userData: CreateUserData = req.body;
+  console.log(userData);
 
   await userService.Register(userData);
 

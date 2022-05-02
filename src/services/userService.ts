@@ -35,7 +35,7 @@ export async function Login(userData: CreateUserData){
 }
 
 export default {
-    Register,
-    findById,
-    Login
+  Register,
+  findById,
+  Login
 }

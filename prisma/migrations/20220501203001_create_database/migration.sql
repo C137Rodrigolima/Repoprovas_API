@@ -54,6 +54,7 @@ CREATE TABLE "testes" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "pdfUrl" TEXT NOT NULL,
+    "viewsCount" INTEGER NOT NULL,
     "categoryId" INTEGER NOT NULL,
     "disciplineTeacherId" INTEGER NOT NULL,
 

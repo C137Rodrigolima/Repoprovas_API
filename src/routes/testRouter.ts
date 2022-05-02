@@ -10,9 +10,26 @@ testRouter.get(
   TestsController.FindTestsByDiscipline
 );
 testRouter.get(
-  "/tests/teacher", 
+  "/instructor", 
   ensureAuthenticatedMiddleware,
   TestsController.FindTestsByTeacher
+)
+testRouter.get(
+  "/input_options/:names",
+  ensureAuthenticatedMiddleware,
+  TestsController.getAllNamesOptions
+)
+
+testRouter.post(
+  "/tests/:id", 
+  ensureAuthenticatedMiddleware,
+  TestsController.IncrementTestsViews
+)
+
+testRouter.post(
+  "/create_test",
+  ensureAuthenticatedMiddleware,
+  TestsController.createNewTest
 )
 
 export default testRouter;

@@ -7,10 +7,10 @@ export async function errorHandleMiddleware(
     next: NextFunction
 ){
     console.log(error);
-    if(error.type === "bad request"){
+    if(error.type === "bad_request"){
         return res.sendStatus(400);
     }
-    if(error.type === "not found"){
+    if(error.type === "not_found"){
         return res.sendStatus(404);
     }
     if(error.type === "conflict"){
