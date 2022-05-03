@@ -5,7 +5,7 @@ import { userSchema } from "../schemas/userSchema.js";
 
 const userRouter = Router();
 
-userRouter.post("/",
+userRouter.post("/login",
   validateSchemaMiddleware(userSchema),
   userController.SignIn
 )

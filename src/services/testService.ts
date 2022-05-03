@@ -2,16 +2,21 @@ import { DisciplineTeacher } from "@prisma/client";
 import * as testsRepository from "../repositories/testRepository.js";
 
 export async function findAllTermTests(){
-  const testes = await testsRepository.findAlltestes();
-  return testes;
+  const tests = await testsRepository.findAlltestes();
+  
+  return tests;
 }
 
 export async function findAllTeacherTests(){
- const teacherTestes = await testsRepository.findAllTeacherTests();
- return teacherTestes;
+  const teacherTestes = await testsRepository.findAllTeacherTests();
+
+  return teacherTestes;
 }
 
 export async function incrementTests(id: number){
+  const test = await testsRepository.findOneTest(id);
+  if(!test) throw { type: "not_found" };
+
   return await testsRepository.updateTest(id);
 }
 
@@ -30,9 +35,6 @@ export async function getNamesOptions(names: string){
 }
 
 export async function createTest(data: testsRepository.createTestForm){
-  //buscar se já tem disciplineTeacher adicionado...
-  //se sim usar ele, se não adicionar um e requisitar novamente seu id;
-  // então adicionar normalmente o restante com o disciplineteacher
   let disciplineTeacher: DisciplineTeacher;
   disciplineTeacher = await testsRepository.selectDisciplineTeacher(data.disciplineId, data.teacherId);
 
@@ -40,6 +42,5 @@ export async function createTest(data: testsRepository.createTestForm){
     await testsRepository.insertDisciplineTeacher(data.disciplineId, data.teacherId);
     disciplineTeacher = await testsRepository.selectDisciplineTeacher(data.disciplineId, data.teacherId);
   }
-  console.log(disciplineTeacher);
   await testsRepository.insertOneTest(data, disciplineTeacher);
 }

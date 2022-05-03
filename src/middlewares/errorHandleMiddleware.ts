@@ -8,6 +8,7 @@ export async function errorHandleMiddleware(
 ){
     console.log(error);
     if(error.type === "bad_request"){
+        console.log(error);
         return res.sendStatus(400);
     }
     if(error.type === "not_found"){

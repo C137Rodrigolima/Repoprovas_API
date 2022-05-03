@@ -43,6 +43,14 @@ export async function findAllTeacherTests(){
   })
 }
 
+export async function findOneTest(id: number){
+  return prisma.teste.findUnique({
+    where: {
+      id: id,
+    }
+  })
+}
+
 export async function updateTest(id: number){
   return prisma.teste.update({
     where: {

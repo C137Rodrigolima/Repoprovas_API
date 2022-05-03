@@ -1,6 +1,8 @@
 import { Router } from "express";
 import * as TestsController from "../controllers/testController.js"
 import { ensureAuthenticatedMiddleware } from "../middlewares/ensureAuthenticatedMiddleware.js";
+import { validateSchemaMiddleware } from "../middlewares/validateSchemaMiddleware.js";
+import { testSchema } from "../schemas/testSchema.js";
 
 const testRouter = Router();
 
@@ -20,7 +22,7 @@ testRouter.get(
   TestsController.getAllNamesOptions
 )
 
-testRouter.post(
+testRouter.put(
   "/tests/:id", 
   ensureAuthenticatedMiddleware,
   TestsController.IncrementTestsViews
@@ -28,6 +30,7 @@ testRouter.post(
 
 testRouter.post(
   "/create_test",
+  validateSchemaMiddleware(testSchema),
   ensureAuthenticatedMiddleware,
   TestsController.createNewTest
 )

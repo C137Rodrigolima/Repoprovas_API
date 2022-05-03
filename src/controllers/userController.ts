@@ -14,7 +14,7 @@ export async function SignIn(req: Request, res: Response){
   const userData: CreateUserData = req.body;
   
   const token = await userService.Login(userData);
-  console.log(token);
+  console.log(typeof token);
 
   res.send(token);
 }
